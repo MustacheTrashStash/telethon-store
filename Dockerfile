@@ -2,14 +2,20 @@ FROM node:latest
 
 WORKDIR /app/medusa
 
-COPY . .
+# Copy only package files first for caching
+COPY package.json yarn.lock ./
 
+# Install system dependencies needed by Medusa (e.g. python)
 RUN apt-get update && apt-get install -y python3 python3-pip python-is-python3
 
-RUN yarn global add @medusajs/medusa-cli
+# Install node dependencies (including Medusa CLI)
+RUN yarn install
 
-RUN yarn
+# Now copy the rest of the project files
+COPY . .
 
+# Build the project
 RUN yarn build
 
-CMD medusa migrations run && yarn start
+# Run migrations and start the server with local CLI
+CMD npx medusa migrations run && npx medusa start
