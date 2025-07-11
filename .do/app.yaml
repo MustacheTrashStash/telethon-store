@@ -16,34 +16,29 @@ services:
     http_port: 9000
     health_check:
       http_path: /health
-    depends_on:
-      - name: db
-        condition: service_healthy
     envs:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        value: ${db.DATABASE_URL}
-      - key: DB_HOST
-        value: ${db.HOSTNAME}
-      - key: DB_PORT
-        value: ${db.PORT}
-      - key: DB_USER
-        value: ${db.USERNAME}
-      - key: DB_PASSWORD
-        value: ${db.PASSWORD}
+        value: postgresql://doadmin:AVNS_8HuLDzB3YclMCGme9_o@medusa-db-do-user-3370563-0.e.db.ondigitalocean.com:25060/defaultdb?sslmode=require
+      - key: REDIS_URL
+        value: ${telethon-valkey.DATABASE_URL}
       - key: DB_NAME
-        value: ${db.DATABASE}
+        value: medusa-v2
       - key: JWT_SECRET
         value: your-super-secure-jwt-secret-change-this-in-production
       - key: COOKIE_SECRET
         value: your-super-secure-cookie-secret-change-this-in-production
       - key: STORE_CORS
-        value: https://telethon-store-storefront-xxxxx.ondigitalocean.app
+        value: https://cctv.org/telethon,https://docs.medusajs.com
       - key: ADMIN_CORS
-        value: https://telethon-store-backend-xxxxx.ondigitalocean.app
+        value: https://cctv.org/telethon/admin,https://docs.medusajs.com
       - key: AUTH_CORS
-        value: https://telethon-store-backend-xxxxx.ondigitalocean.app,https://telethon-store-storefront-xxxxx.ondigitalocean.app
+        value: https://cctv.org/telethon,https://cctv.org/telethon/admin,https://docs.medusajs.com
+      - key: MEDUSA_ADMIN_ONBOARDING_TYPE
+        value: nextjs
+      - key: MEDUSA_ADMIN_ONBOARDING_NEXTJS_DIRECTORY
+        value: telethon-store-storefront
       - key: DISABLE_ADMIN_BUILD
         value: "true"
       - key: MEDUSA_DISABLE_ADMIN
@@ -91,17 +86,11 @@ jobs:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        value: ${db.DATABASE_URL}
+        value: postgresql://doadmin:AVNS_8HuLDzB3YclMCGme9_o@medusa-db-do-user-3370563-0.e.db.ondigitalocean.com:25060/defaultdb?sslmode=require
 
 # Database and Redis services
 databases:
-  - name: db
-    engine: PG
-    size: basic-xxs
-    num_nodes: 1
-    version: "16"
-
-  - name: redis
+  - name: telethon-valkey
     engine: REDIS
     size: basic-xxs
     num_nodes: 1
