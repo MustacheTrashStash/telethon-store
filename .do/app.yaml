@@ -25,8 +25,6 @@ services:
         value: "25060"
       - key: DB_USER
         value: doadmin
-      - key: DB_PASSWORD
-        value: AVNS_8HuLDzB3YclMCGme9_o
       - key: DB_NAME
         value: defaultdb
       - key: REDIS_URL
@@ -97,8 +95,6 @@ jobs:
         value: "25060"
       - key: DB_USER
         value: doadmin
-      - key: DB_PASSWORD
-        value: AVNS_8HuLDzB3YclMCGme9_o
       - key: DB_NAME
         value: defaultdb
 
