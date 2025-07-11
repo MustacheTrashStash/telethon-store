@@ -21,8 +21,6 @@ services:
         value: production
       - key: DATABASE_URL
         value: ${postgresql.DATABASE_URL}
-      - key: REDIS_URL
-        value: ${redis.DATABASE_URL}
       - key: JWT_SECRET
         value: your-super-secure-jwt-secret-change-this-in-production
       - key: COOKIE_SECRET
@@ -81,8 +79,6 @@ jobs:
         value: production
       - key: DATABASE_URL
         value: ${postgresql.DATABASE_URL}
-      - key: REDIS_URL
-        value: ${redis.DATABASE_URL}
 
 # Database and Redis services
 databases:
