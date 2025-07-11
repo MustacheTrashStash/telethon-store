@@ -23,11 +23,13 @@ services:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        value: postgresql://doadmin:AVNS_8HuLDzB3YclMCGme9_o@medusa-db-do-user-3370563-0.e.db.ondigitalocean.com:25060/defaultdb?sslmode=require
+        value: ${DATABASE_URL}
+      - key: REDIS_URL
+        value: ${REDIS_URL}
       - key: JWT_SECRET
-        value: your-super-secure-jwt-secret-change-this-in-production
+        value: ${JWT_SECRET}
       - key: COOKIE_SECRET
-        value: your-super-secure-cookie-secret-change-this-in-production
+        value: ${COOKIE_SECRET}
       - key: STORE_CORS
         value: https://cctv.org/telethon,https://docs.medusajs.com
       - key: ADMIN_CORS
@@ -90,7 +92,7 @@ jobs:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        value: postgresql://doadmin:AVNS_8HuLDzB3YclMCGme9_o@medusa-db-do-user-3370563-0.e.db.ondigitalocean.com:25060/defaultdb?sslmode=require
+        value: ${DATABASE_URL}
 
 # Database and Redis services
 databases:
