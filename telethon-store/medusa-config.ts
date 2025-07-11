@@ -1,6 +1,9 @@
 import { loadEnv, defineConfig } from '@medusajs/framework/utils'
 
-loadEnv(process.env.NODE_ENV || 'development', process.cwd())
+// Only load env files in development - Digital Ocean handles env vars in production
+if (process.env.NODE_ENV !== 'production') {
+  loadEnv(process.env.NODE_ENV || 'development', process.cwd())
+}
 
 module.exports = defineConfig({
   projectConfig: {
