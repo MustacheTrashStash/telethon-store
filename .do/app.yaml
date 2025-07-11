@@ -1,0 +1,79 @@
+name: telethon-store
+region: nyc
+services:
+  # Medusa Backend Service
+  - name: medusa-backend
+    source_dir: /telethon-store
+    github:
+      repo: your-github-username/telethon-store-dev
+      branch: main
+      deploy_on_push: true
+    run_command: npm start
+    build_command: npm run build
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    http_port: 9000
+    health_check:
+      http_path: /health
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: ${DATABASE_URL}
+      - key: REDIS_URL
+        value: ${REDIS_URL}
+      - key: JWT_SECRET
+        value: your-super-secure-jwt-secret-change-this-in-production
+      - key: COOKIE_SECRET
+        value: your-super-secure-cookie-secret-change-this-in-production
+      - key: STORE_CORS
+        value: https://telethon-store-storefront-xxxxx.ondigitalocean.app
+      - key: ADMIN_CORS
+        value: https://telethon-store-backend-xxxxx.ondigitalocean.app
+      - key: AUTH_CORS
+        value: https://telethon-store-backend-xxxxx.ondigitalocean.app,https://telethon-store-storefront-xxxxx.ondigitalocean.app
+
+  # Next.js Storefront Service
+  - name: storefront
+    source_dir: /telethon-store-storefront
+    github:
+      repo: your-github-username/telethon-store-dev
+      branch: main
+      deploy_on_push: true
+    run_command: npm start
+    build_command: npm run build
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    http_port: 8000
+    health_check:
+      http_path: /health
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_MEDUSA_BACKEND_URL
+        value: https://telethon-store-backend-xxxxx.ondigitalocean.app
+      - key: NEXT_PUBLIC_BASE_URL
+        value: https://telethon-store-storefront-xxxxx.ondigitalocean.app
+
+# Database Migration Job
+jobs:
+  - name: migrate-db
+    source_dir: /telethon-store
+    github:
+      repo: your-github-username/telethon-store-dev
+      branch: main
+      deploy_on_push: true
+    run_command: npx medusa db:migrate
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    kind: PRE_DEPLOY
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: ${DATABASE_URL}
+      - key: REDIS_URL
+        value: ${REDIS_URL}
