@@ -8,8 +8,8 @@ services:
       repo: MustacheTrashStash/telethon-store
       branch: main
       deploy_on_push: true
-    run_command: bash start-app.sh
-    build_command: npm run build
+    run_command: npm start
+    build_command: npm install -g yarn@1.22.19 && npm run build
     environment_slug: node-js
     instance_count: 1
     instance_size_slug: basic-xxs
@@ -45,8 +45,8 @@ services:
       repo: MustacheTrashStash/telethon-store
       branch: main
       deploy_on_push: true
-    run_command: bash start-app.sh
-    build_command: npm run build
+    run_command: npm start
+    build_command: npm install -g yarn@1.22.19 && npm run build
     environment_slug: node-js
     instance_count: 1
     instance_size_slug: basic-xxs
