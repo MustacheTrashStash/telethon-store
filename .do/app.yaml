@@ -9,7 +9,7 @@ services:
       branch: main
       deploy_on_push: true
     run_command: npm start
-    build_command: rm -rf node_modules package-lock.json && npm install && npm run build
+    build_command: npm run build:backend
     environment_slug: node-js
     instance_count: 1
     instance_size_slug: basic-xxs
@@ -34,6 +34,8 @@ services:
       - key: AUTH_CORS
         value: https://telethon-store-backend-xxxxx.ondigitalocean.app,https://telethon-store-storefront-xxxxx.ondigitalocean.app
       - key: DISABLE_ADMIN_BUILD
+        value: "true"
+      - key: MEDUSA_DISABLE_ADMIN
         value: "true"
 
   # Next.js Storefront Service
