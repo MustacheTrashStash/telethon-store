@@ -16,11 +16,14 @@ services:
     http_port: 9000
     health_check:
       http_path: /health
+      port: 9000
     engines:
       node: "18.x"
     envs:
       - key: NODE_ENV
         value: production
+      - key: DATABASE_URL
+        value: postgresql://doadmin:AVNS_8HuLDzB3YclMCGme9_o@medusa-db-do-user-3370563-0.e.db.ondigitalocean.com:25060/defaultdb?ssl=true&sslmode=require&sslcert=&sslkey=&sslrootcert=
       - key: JWT_SECRET
         value: your-super-secure-jwt-secret-change-this-in-production
       - key: COOKIE_SECRET
@@ -55,6 +58,7 @@ services:
     http_port: 8000
     health_check:
       http_path: /health
+      port: 8000
     engines:
       node: "18.x"
     envs:
@@ -85,6 +89,8 @@ jobs:
     envs:
       - key: NODE_ENV
         value: production
+      - key: DATABASE_URL
+        value: postgresql://doadmin:AVNS_8HuLDzB3YclMCGme9_o@medusa-db-do-user-3370563-0.e.db.ondigitalocean.com:25060/defaultdb?ssl=true&sslmode=require&sslcert=&sslkey=&sslrootcert=
 
 # Database and Redis services
 databases:
