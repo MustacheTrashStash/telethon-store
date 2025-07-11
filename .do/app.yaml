@@ -8,7 +8,7 @@ services:
       repo: MustacheTrashStash/telethon-store
       branch: main
       deploy_on_push: true
-    run_command: npm start
+    run_command: bash start-backend.sh
     build_command: npm run build
     environment_slug: node-js
     instance_count: 1
@@ -51,7 +51,7 @@ services:
       repo: MustacheTrashStash/telethon-store
       branch: main
       deploy_on_push: true
-    run_command: npm start
+    run_command: bash start-frontend.sh
     build_command: npm run build
     environment_slug: node-js
     instance_count: 1
