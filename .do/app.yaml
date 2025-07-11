@@ -20,9 +20,9 @@ services:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        value: ${DATABASE_URL}
+        value: ${postgresql.DATABASE_URL}
       - key: REDIS_URL
-        value: ${REDIS_URL}
+        value: ${redis.DATABASE_URL}
       - key: JWT_SECRET
         value: your-super-secure-jwt-secret-change-this-in-production
       - key: COOKIE_SECRET
@@ -60,6 +60,8 @@ services:
         value: us
       - key: SKIP_BUILD_STATIC_GENERATION
         value: true
+      - key: NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
+        value: pk_test_placeholder
 
 # Database Migration Job
 jobs:
@@ -78,9 +80,9 @@ jobs:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        value: ${DATABASE_URL}
+        value: ${postgresql.DATABASE_URL}
       - key: REDIS_URL
-        value: ${REDIS_URL}
+        value: ${redis.DATABASE_URL}
 
 # Database and Redis services
 databases:
