@@ -5,7 +5,7 @@ services:
   - name: medusa-backend
     source_dir: /telethon-store
     github:
-      repo: your-github-username/telethon-store-dev
+      repo: MustacheTrashStash/telethon-store
       branch: main
       deploy_on_push: true
     run_command: npm start
@@ -38,7 +38,7 @@ services:
   - name: storefront
     source_dir: /telethon-store-storefront
     github:
-      repo: your-github-username/telethon-store-dev
+      repo: MustacheTrashStash/telethon-store
       branch: main
       deploy_on_push: true
     run_command: npm start
@@ -62,7 +62,7 @@ jobs:
   - name: migrate-db
     source_dir: /telethon-store
     github:
-      repo: your-github-username/telethon-store-dev
+      repo: MustacheTrashStash/telethon-store
       branch: main
       deploy_on_push: true
     run_command: npx medusa db:migrate
