@@ -10,6 +10,12 @@ const requiredEnvs = [
 ]
 
 function checkEnvVariables() {
+  // Skip environment variable check during build when static generation is disabled
+  if (process.env.SKIP_BUILD_STATIC_GENERATION === 'true') {
+    console.log("⚠️  Skipping environment variable check during build")
+    return
+  }
+
   const missingEnvs = requiredEnvs.filter(function (env) {
     return !process.env[env.key]
   })
