@@ -61,23 +61,37 @@ services:
       - key: SKIP_BUILD_STATIC_GENERATION
         value: true
 
-# Database Migration Job - Temporarily disabled to troubleshoot yarn issue
-# jobs:
-#   - name: migrate-db
-#     source_dir: /telethon-store
-#     github:
-#       repo: MustacheTrashStash/telethon-store
-#       branch: main
-#       deploy_on_push: true
-#     run_command: npx medusa db:migrate
-#     environment_slug: node-js
-#     instance_count: 1
-#     instance_size_slug: basic-xxs
-#     kind: PRE_DEPLOY
-#     envs:
-#       - key: NODE_ENV
-#         value: production
-#       - key: DATABASE_URL
-#         value: ${DATABASE_URL}
-#       - key: REDIS_URL
-#         value: ${REDIS_URL}
+# Database Migration Job
+jobs:
+  - name: migrate-db
+    source_dir: /telethon-store
+    github:
+      repo: MustacheTrashStash/telethon-store
+      branch: main
+      deploy_on_push: true
+    run_command: yarn medusa db:migrate
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    kind: PRE_DEPLOY
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: ${DATABASE_URL}
+      - key: REDIS_URL
+        value: ${REDIS_URL}
+
+# Database and Redis services
+databases:
+  - name: postgresql
+    engine: PG
+    size: basic-xxs
+    num_nodes: 1
+    version: "16"
+
+  - name: redis
+    engine: REDIS
+    size: basic-xxs
+    num_nodes: 1
+    version: "7"
