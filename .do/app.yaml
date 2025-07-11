@@ -19,12 +19,18 @@ services:
     envs:
       - key: NODE_ENV
         value: production
-      - key: DATABASE_URL
-        value: postgresql://doadmin:AVNS_8HuLDzB3YclMCGme9_o@medusa-db-do-user-3370563-0.e.db.ondigitalocean.com:25060/defaultdb?sslmode=require
+      - key: DB_HOST
+        value: medusa-db-do-user-3370563-0.e.db.ondigitalocean.com
+      - key: DB_PORT
+        value: "25060"
+      - key: DB_USER
+        value: doadmin
+      - key: DB_PASSWORD
+        value: AVNS_8HuLDzB3YclMCGme9_o
+      - key: DB_NAME
+        value: defaultdb
       - key: REDIS_URL
         value: ${telethon-valkey.DATABASE_URL}
-      - key: DB_NAME
-        value: medusa-v2
       - key: JWT_SECRET
         value: your-super-secure-jwt-secret-change-this-in-production
       - key: COOKIE_SECRET
@@ -85,8 +91,16 @@ jobs:
     envs:
       - key: NODE_ENV
         value: production
-      - key: DATABASE_URL
-        value: postgresql://doadmin:AVNS_8HuLDzB3YclMCGme9_o@medusa-db-do-user-3370563-0.e.db.ondigitalocean.com:25060/defaultdb?sslmode=require
+      - key: DB_HOST
+        value: medusa-db-do-user-3370563-0.e.db.ondigitalocean.com
+      - key: DB_PORT
+        value: "25060"
+      - key: DB_USER
+        value: doadmin
+      - key: DB_PASSWORD
+        value: AVNS_8HuLDzB3YclMCGme9_o
+      - key: DB_NAME
+        value: defaultdb
 
 # Database and Redis services
 databases:
