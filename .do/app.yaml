@@ -8,7 +8,7 @@ services:
       repo: MustacheTrashStash/telethon-store
       branch: main
       deploy_on_push: true
-    run_command: bash start-backend.sh
+    run_command: npm start
     build_command: npm run build
     environment_slug: node-js
     instance_count: 1
@@ -37,12 +37,6 @@ services:
         value: "true"
       - key: MEDUSA_DISABLE_ADMIN
         value: "true"
-      - key: NPM_CONFIG_PRODUCTION
-        value: "false"
-      - key: USE_NPM
-        value: "true"
-      - key: YARN_PRODUCTION
-        value: "false"
 
   # Next.js Storefront Service
   - name: storefront
@@ -51,7 +45,7 @@ services:
       repo: MustacheTrashStash/telethon-store
       branch: main
       deploy_on_push: true
-    run_command: bash start-frontend.sh
+    run_command: npm start
     build_command: npm run build
     environment_slug: node-js
     instance_count: 1
@@ -66,12 +60,6 @@ services:
         value: us
       - key: SKIP_BUILD_STATIC_GENERATION
         value: true
-      - key: NPM_CONFIG_PRODUCTION
-        value: "false"
-      - key: USE_NPM
-        value: "true"
-      - key: YARN_PRODUCTION
-        value: "false"
 
 # Database Migration Job - Temporarily disabled to troubleshoot yarn issue
 # jobs:
