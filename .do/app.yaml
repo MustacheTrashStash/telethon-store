@@ -16,6 +16,9 @@ services:
     http_port: 9000
     health_check:
       http_path: /health
+    depends_on:
+      - name: postgresql
+        condition: service_healthy
     envs:
       - key: NODE_ENV
         value: production
