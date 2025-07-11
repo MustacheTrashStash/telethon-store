@@ -13,8 +13,10 @@
     "medusa"
   ],
   "scripts": {
-    "build": "medusa build",
-    "build:backend": "DISABLE_ADMIN_BUILD=true medusa build",
+    "build": "node build-backend.js",
+    "build:backend": "node build-backend.js",
+    "build:backend-only": "node build-backend.js",
+    "build:full": "medusa build",
     "seed": "medusa exec ./src/scripts/seed.ts",
     "start": "medusa start",
     "dev": "medusa develop",
