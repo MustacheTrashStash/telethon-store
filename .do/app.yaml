@@ -16,19 +16,11 @@ services:
     http_port: 9000
     health_check:
       http_path: /health
+    engines:
+      node: "18.x"
     envs:
       - key: NODE_ENV
         value: production
-      - key: DB_HOST
-        value: medusa-db-do-user-3370563-0.e.db.ondigitalocean.com
-      - key: DB_PORT
-        value: "25060"
-      - key: DB_USER
-        value: doadmin
-      - key: DB_NAME
-        value: defaultdb
-      - key: REDIS_URL
-        value: ${telethon-valkey.DATABASE_URL}
       - key: JWT_SECRET
         value: your-super-secure-jwt-secret-change-this-in-production
       - key: COOKIE_SECRET
@@ -63,6 +55,8 @@ services:
     http_port: 8000
     health_check:
       http_path: /health
+    engines:
+      node: "18.x"
     envs:
       - key: NODE_ENV
         value: production
@@ -86,17 +80,11 @@ jobs:
     instance_count: 1
     instance_size_slug: basic-xxs
     kind: PRE_DEPLOY
+    engines:
+      node: "18.x"
     envs:
       - key: NODE_ENV
         value: production
-      - key: DB_HOST
-        value: medusa-db-do-user-3370563-0.e.db.ondigitalocean.com
-      - key: DB_PORT
-        value: "25060"
-      - key: DB_USER
-        value: doadmin
-      - key: DB_NAME
-        value: defaultdb
 
 # Database and Redis services
 databases:
