@@ -18,36 +18,46 @@ type Props = {
 export const PRODUCT_LIMIT = 12
 
 export async function generateStaticParams() {
-  const { collections } = await listCollections({
-    fields: "*products",
-  })
-
-  if (!collections) {
+  // Skip static generation if environment variable is set
+  if (process.env.SKIP_BUILD_STATIC_GENERATION === 'true') {
     return []
   }
 
-  const countryCodes = await listRegions().then(
-    (regions: StoreRegion[]) =>
-      regions
-        ?.map((r) => r.countries?.map((c) => c.iso_2))
-        .flat()
-        .filter(Boolean) as string[]
-  )
+  try {
+    const { collections } = await listCollections({
+      fields: "*products",
+    })
 
-  const collectionHandles = collections.map(
-    (collection: StoreCollection) => collection.handle
-  )
+    if (!collections) {
+      return []
+    }
 
-  const staticParams = countryCodes
-    ?.map((countryCode: string) =>
-      collectionHandles.map((handle: string | undefined) => ({
-        countryCode,
-        handle,
-      }))
+    const countryCodes = await listRegions().then(
+      (regions: StoreRegion[]) =>
+        regions
+          ?.map((r) => r.countries?.map((c) => c.iso_2))
+          .flat()
+          .filter(Boolean) as string[]
     )
-    .flat()
 
-  return staticParams
+    const collectionHandles = collections.map(
+      (collection: StoreCollection) => collection.handle
+    )
+
+    const staticParams = countryCodes
+      ?.map((countryCode: string) =>
+        collectionHandles.map((handle: string | undefined) => ({
+          countryCode,
+          handle,
+        }))
+      )
+      .flat()
+
+    return staticParams
+  } catch (error) {
+    console.warn('Failed to generate static params for collections, skipping:', error)
+    return []
+  }
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {

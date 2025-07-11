@@ -53,9 +53,15 @@ services:
       - key: NODE_ENV
         value: production
       - key: NEXT_PUBLIC_MEDUSA_BACKEND_URL
-        value: https://telethon-store-backend-xxxxx.ondigitalocean.app
+        value: ${MEDUSA_BACKEND_URL}
       - key: NEXT_PUBLIC_BASE_URL
-        value: https://telethon-store-storefront-xxxxx.ondigitalocean.app
+        value: ${NEXT_PUBLIC_BASE_URL}
+      - key: NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
+        value: ${NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY}
+      - key: NEXT_PUBLIC_DEFAULT_REGION
+        value: us
+      - key: SKIP_BUILD_STATIC_GENERATION
+        value: true
 
 # Database Migration Job
 jobs:
