@@ -9,7 +9,7 @@ services:
       branch: main
       deploy_on_push: true
     run_command: yarn start
-    build_command: yarn build
+    build_command: yarn run build:full
     environment_slug: node-js
     instance_count: 1
     instance_size_slug: basic-xxs
@@ -49,7 +49,7 @@ services:
       branch: main
       deploy_on_push: true
     run_command: yarn start
-    build_command: yarn build
+    build_command: yarn run build:full
     environment_slug: node-js
     instance_count: 1
     instance_size_slug: basic-xxs
