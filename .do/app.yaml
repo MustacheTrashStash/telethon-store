@@ -8,8 +8,8 @@ services:
       repo: MustacheTrashStash/telethon-store
       branch: main
       deploy_on_push: true
-    run_command: yarn start
-    build_command: yarn run build:full
+    run_command: yarn run build:full && yarn start
+    # Remove the build_command line
     environment_slug: node-js
     instance_count: 1
     instance_size_slug: basic-xxs
