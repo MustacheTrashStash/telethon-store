@@ -8,7 +8,7 @@ services:
       repo: MustacheTrashStash/telethon-store
       branch: main
       deploy_on_push: true
-    run_command: yarn run build:full && yarn start
+    run_command: sh -c "yarn run build:full && yarn start"
     # Remove the build_command line
     environment_slug: node-js
     instance_count: 1
