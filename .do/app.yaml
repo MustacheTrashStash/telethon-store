@@ -40,10 +40,6 @@ services:
         value: nextjs
       - key: MEDUSA_ADMIN_ONBOARDING_NEXTJS_DIRECTORY
         value: telethon-store-storefront
-      - key: DISABLE_ADMIN_BUILD
-        value: "false
-      - key: MEDUSA_DISABLE_ADMIN
-        value: "false
 
   # Next.js Storefront Service
   - name: storefront
