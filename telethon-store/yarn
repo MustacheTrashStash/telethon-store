@@ -1,0 +1,29 @@
+#!/bin/bash
+# Yarn compatibility layer - maps yarn commands to npm
+case "$1" in
+    "install"|"")
+        npm install "${@:2}"
+        ;;
+    "start")
+        npm start "${@:2}"
+        ;;
+    "build")
+        npm run build "${@:2}"
+        ;;
+    "dev")
+        npm run dev "${@:2}"
+        ;;
+    "run")
+        npm run "${@:2}"
+        ;;
+    "add")
+        npm install "${@:2}"
+        ;;
+    "remove")
+        npm uninstall "${@:2}"
+        ;;
+    *)
+        echo "yarn $1 -> npm run $1"
+        npm run "$@"
+        ;;
+esac
