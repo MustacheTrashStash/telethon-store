@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.27.6",
+    "@medusajs/admin-bundler": "^2.8.7",
     "@medusajs/admin-sdk": "2.8.7",
     "@medusajs/cli": "2.8.7",
     "@medusajs/framework": "2.8.7",
@@ -41,7 +42,7 @@
     "express": "^4.21.0",
     "pg": "^8.13.0",
     "posthog-node": "^4.17.1",
-    "zod": "^3.25.0"
+    "zod": "^4.0.5"
   },
   "devDependencies": {
     "@medusajs/test-utils": "2.8.7",

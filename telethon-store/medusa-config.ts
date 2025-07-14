@@ -12,6 +12,7 @@ module.exports = defineConfig({
       authCors: process.env.AUTH_CORS!,
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
-    }
+    },
+    port: process.env.PORT || 8080 // Add this line to ensure the backend listens on the correct port
   }
 })
