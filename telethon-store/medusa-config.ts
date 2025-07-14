@@ -1,6 +1,4 @@
 import { loadEnv, defineConfig } from '@medusajs/framework/utils'
-import * as fs from 'fs'
-import * as path from 'path'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
@@ -15,10 +13,6 @@ module.exports = defineConfig({
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     },
-    database: {
-      ssl: {
-        ca: fs.readFileSync(path.resolve(__dirname, '../certs/ca-certificate.crt')).toString(),
-      },
-    },
-  },
-});
+
+  }
+})
