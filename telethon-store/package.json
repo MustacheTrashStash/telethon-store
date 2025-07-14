@@ -17,7 +17,7 @@
     "build:backend": "node build-backend.js",
     "build:backend-only": "node build-backend.js",
     "build:full": "medusa build",
-    "build-and-start": "yarn run build:full && yarn start",
+    "build-and-start": "node --max-old-space-size=2048 ./node_modules/.bin/medusa build && yarn start",
     "seed": "medusa exec ./src/scripts/seed.ts",
     "start": "medusa start",
     "dev": "medusa develop",
