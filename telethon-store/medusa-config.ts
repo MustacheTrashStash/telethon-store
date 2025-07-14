@@ -15,10 +15,10 @@ module.exports = defineConfig({
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     },
-  },
-  databaseExtra: {
-    ssl: {
-      ca: fs.readFileSync(path.resolve(__dirname, '../certs/ca-certificate.crt')).toString(),
+    database: {
+      ssl: {
+        ca: fs.readFileSync(path.resolve(__dirname, '../certs/ca-certificate.crt')).toString(),
+      },
     },
   },
 });
