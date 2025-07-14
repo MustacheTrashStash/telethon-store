@@ -13,10 +13,10 @@ services:
     environment_slug: node-js
     instance_count: 1
     instance_size_slug: basic-xxs
-    http_port: 9000
+    http_port: 8080
     health_check:
       http_path: /health
-      port: 9000
+      port: 8080
     engines:
       node: "18.x"
     envs:
